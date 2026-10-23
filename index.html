@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Portofolio Modern — Blue Aura Edition</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Montserrat Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        montserrat: ['Montserrat', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#0f172a',
+                            950: '#020512',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ==========================================
+           DESIGN TOKENS & TYPOGRAPHY SYSTEM
+           ========================================== */
+        :root {
+            --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-montserrat: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Fluid Typographic Scale */
+            --text-hero: clamp(2.1rem, 3.6vw + 1rem, 3.4rem);
+            --text-h2: clamp(1.6rem, 2.4vw + 0.8rem, 2.4rem);
+            --text-h3: clamp(1.05rem, 0.6vw + 0.9rem, 1.3rem);
+            --text-subtitle: clamp(1.05rem, 0.85vw + 0.8rem, 1.35rem);
+            --text-metric: clamp(2.1rem, 2.6vw + 1.1rem, 3.1rem);
+            --text-body: 1rem;
+            --text-ui: 0.875rem;
+            --text-meta: 0.8125rem;
+
+            /* Color & Surface Tokens - Dominant Deep Navy with Subtle Blue Aura */
+            --bg-canvas: #03091e;
+            --surface-primary: rgba(8, 20, 52, 0.78);
+            --surface-secondary: rgba(10, 25, 64, 0.72);
+            --surface-elevated: rgba(14, 34, 84, 0.82);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #93c5fd;
+            --accent-sky: #38bdf8;
+            --accent-blue: #2563eb;
+            --border-subtle: rgba(59, 130, 246, 0.26);
+            --border-accent: rgba(96, 165, 250, 0.48);
+            --border-hover: rgba(147, 197, 253, 0.7);
+            --shadow-card: 0 22px 55px -12px rgba(2, 8, 28, 0.85), 0 0 36px -10px rgba(29, 78, 216, 0.32), inset 0 1px 1px 0 rgba(147, 197, 253, 0.18);
+            --shadow-subcard: 0 14px 35px -10px rgba(2, 8, 28, 0.78), 0 0 24px -8px rgba(37, 99, 235, 0.24), inset 0 1px 1px 0 rgba(147, 197, 253, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+            user-select: none;
+            overscroll-behavior: none;
+        }
+
+        /* Hierarchy & Typography Classes */
+        .aura-title {
+            font-family: var(--font-display);
+            background: linear-gradient(180deg, #ffffff 15%, #e2e8f0 70%, #bae6fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.028em;
+            line-height: 1.15;
+        }
+
+        .hero-name-heading {
+            font-size: var(--text-hero);
+            font-weight: 700;
+            letter-spacing: -0.032em;
+            line-height: 1.12;
+        }
+
+        .section-heading {
+            font-size: var(--text-h2);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.18;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: var(--text-subtitle);
+            font-weight: 400;
+            color: var(--text-secondary);
+            letter-spacing: -0.01em;
+            line-height: 1.5;
+        }
+
+        .eyebrow-label {
+            font-family: var(--font-sans);
+            font-size: var(--text-meta);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-sky);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .eyebrow-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 2px;
+            background-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: var(--text-h3);
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.018em;
+            line-height: 1.35;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: var(--text-metric);
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            line-height: 1.05;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .meta-tag {
+            font-family: var(--font-sans);
+            font-size: var(--text-meta);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #93c5fd;
+            background: rgba(5, 13, 36, 0.82);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 6px;
+            padding: 0.25rem 0.625rem;
+        }
+
+        /* Tipografi "Ad Meliora" dengan Font Montserrat */
+        .ad-meliora-heading {
+            font-family: var(--font-montserrat);
+            font-weight: 600;
+            font-style: normal;
+            background: linear-gradient(180deg, #ffffff 0%, #dbeafe 55%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.16em;
+            margin-right: -0.16em;
+            filter: drop-shadow(0 0 22px rgba(37, 99, 235, 0.55)) drop-shadow(0 4px 14px rgba(3, 9, 30, 0.8));
+            animation: titleBreathe 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleBreathe {
+            0%   { filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.45)) drop-shadow(0 4px 12px rgba(3, 9, 30, 0.75)); transform: translateY(0px); }
+            100% { filter: drop-shadow(0 0 28px rgba(56, 189, 248, 0.65)) drop-shadow(0 6px 18px rgba(29, 78, 216, 0.6)); transform: translateY(-2px); }
+        }
+
+        /* Efek Aura Navy & Glow Seimbang di Tengah Halaman */
+        .aura-bloom-horizon {
+            background: radial-gradient(
+                ellipse 80% 58% at 50% 56%,
+                rgba(37, 99, 235, 0.28) 0%,
+                rgba(29, 78, 216, 0.24) 32%,
+                rgba(15, 35, 86, 0.35) 62%,
+                rgba(3, 9, 30, 0) 100%
+            );
+            filter: blur(42px);
+            animation: horizonPulseLoop 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes horizonPulseLoop {
+            0%   { transform: scaleX(0.95) scaleY(0.92) translateY(8px); opacity: 0.75; }
+            50%  { transform: scaleX(1.06) scaleY(1.08) translateY(-10px); opacity: 0.95; }
+            100% { transform: scaleX(0.98) scaleY(1.0) translateY(4px); opacity: 0.82; }
+        }
+
+        .aura-bloom-top {
+            background: radial-gradient(
+                ellipse 70% 45% at 50% 0%,
+                rgba(29, 78, 216, 0.24) 0%,
+                rgba(15, 35, 86, 0.20) 55%,
+                rgba(3, 9, 30, 0) 100%
+            );
+            filter: blur(32px);
+        }
+
+        .aura-center-glow {
+            background: radial-gradient(
+                circle at 50% 50%,
+                rgba(56, 189, 248, 0.12) 0%,
+                rgba(29, 78, 216, 0.20) 38%,
+                rgba(10, 25, 66, 0.25) 65%,
+                transparent 82%
+            );
+            filter: blur(48px);
+        }
+
+        /* Animasi Pita Gelombang Aura Dinamis di Area Tengah Halaman */
+        .aura-wave-ribbon {
+            position: absolute;
+            left: -50%;
+            width: 200%;
+            height: 260px;
+            top: 40%;
+            background: radial-gradient(50% 60% at 50% 50%, rgba(37, 99, 235, 0.26) 0%, rgba(15, 38, 95, 0.22) 48%, transparent 75%);
+            filter: blur(34px);
+            animation: waveRibbonFlow 24s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .aura-wave-ribbon-2 {
+            position: absolute;
+            left: -50%;
+            width: 200%;
+            height: 220px;
+            top: 48%;
+            background: radial-gradient(45% 55% at 50% 50%, rgba(56, 189, 248, 0.18) 0%, rgba(29, 78, 216, 0.22) 50%, transparent 75%);
+            filter: blur(30px);
+            animation: waveRibbonFlowReverse 30s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes waveRibbonFlow {
+            0%   { transform: translateX(-16%) translateY(-8px) rotate(-2deg) scaleY(0.9); }
+            50%  { transform: translateX(16%) translateY(10px) rotate(2deg) scaleY(1.18); }
+            100% { transform: translateX(-16%) translateY(-8px) rotate(-2deg) scaleY(0.9); }
+        }
+
+        @keyframes waveRibbonFlowReverse {
+            0%   { transform: translateX(16%) translateY(8px) rotate(1.8deg) scaleY(1.12); }
+            50%  { transform: translateX(-16%) translateY(-10px) rotate(-1.8deg) scaleY(0.88); }
+            100% { transform: translateX(16%) translateY(8px) rotate(1.8deg) scaleY(1.12); }
+        }
+
+        /* Grid Perspektif 3D Atas & Horizon Bawah */
+        .perspective-grid-top {
+            position: absolute;
+            top: -12%;
+            left: -10%;
+            right: -10%;
+            height: 45%;
+            background-image: 
+                linear-gradient(to right, rgba(59, 130, 246, 0.11) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.11) 1px, transparent 1px);
+            background-size: 64px 48px;
+            transform: perspective(550px) rotateX(-68deg);
+            transform-origin: top center;
+            mask-image: radial-gradient(ellipse 70% 75% at 50% 20%, black 15%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 75% at 50% 20%, black 15%, transparent 80%);
+        }
+
+        .perspective-grid-bottom {
+            position: absolute;
+            bottom: -18%;
+            left: -15%;
+            right: -15%;
+            height: 60%;
+            background-image: 
+                linear-gradient(to right, rgba(59, 130, 246, 0.14) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
+            background-size: 64px 52px;
+            transform: perspective(520px) rotateX(68deg);
+            transform-origin: bottom center;
+            mask-image: radial-gradient(ellipse 75% 80% at 50% 85%, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 85%, black 20%, transparent 80%);
+        }
+
+        /* Panel Glassmorphism Dominan Navy dengan Sentuhan Blue Aura */
+        .aura-glass-card {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            background: 
+                radial-gradient(520px circle at var(--mouse-x) var(--mouse-y), rgba(56, 189, 248, 0.15), transparent 70%),
+                linear-gradient(155deg, rgba(14, 32, 78, 0.76) 0%, rgba(7, 17, 46, 0.88) 55%, rgba(4, 10, 28, 0.94) 100%);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+            transform-style: preserve-3d;
+        }
+
+        .aura-glass-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 24px 60px -12px rgba(2, 8, 28, 0.92), 0 0 42px -8px rgba(37, 99, 235, 0.38), inset 0 1px 2px 0 rgba(147, 197, 253, 0.28);
+        }
+
+        .aura-subcard {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            background: 
+                radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), rgba(56, 189, 248, 0.16), transparent 75%),
+                linear-gradient(155deg, rgba(16, 36, 88, 0.68) 0%, rgba(7, 16, 42, 0.88) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-subcard);
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .aura-subcard:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            box-shadow: 
+                0 20px 42px -10px rgba(2, 8, 28, 0.9),
+                0 0 28px -4px rgba(59, 130, 246, 0.38),
+                inset 0 1px 2px 0 rgba(186, 230, 253, 0.3);
+        }
+
+        .aura-pill-btn {
+            background: linear-gradient(180deg, rgba(15, 36, 88, 0.85) 0%, rgba(8, 20, 52, 0.95) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 
+                0 4px 18px -2px rgba(2, 8, 28, 0.7),
+                inset 0 1px 1px rgba(147, 197, 253, 0.22);
+            transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .aura-pill-btn:hover {
+            background: linear-gradient(180deg, rgba(29, 78, 216, 0.75) 0%, rgba(15, 36, 88, 0.95) 100%);
+            border-color: rgba(147, 197, 253, 0.75);
+            box-shadow: 
+                0 6px 24px -2px rgba(37, 99, 235, 0.45),
+                inset 0 1px 2px rgba(255, 255, 255, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .primary-cta-btn {
+            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+            border: 1px solid rgba(147, 197, 253, 0.5);
+            box-shadow: 0 8px 25px -4px rgba(29, 78, 216, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .primary-cta-btn:hover {
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 10px 30px -2px rgba(59, 130, 246, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================
+           DESAIN KUBUS UTAMA & LAUTAN KUBUS 3D
+           ========================================== */
+        .cube-scene {
+            width: 140px;
+            height: 140px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .cube-scene {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-24deg) rotateY(-38deg);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cube.auto-spin {
+            animation: floatAndSpin 11s infinite ease-in-out;
+        }
+
+        @keyframes floatAndSpin {
+            0%   { transform: translateY(0px) rotateX(-24deg) rotateY(0deg); }
+            50%  { transform: translateY(-12px) rotateX(-14deg) rotateY(180deg); }
+            100% { transform: translateY(0px) rotateX(-24deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1.5px solid rgba(147, 197, 253, 0.75);
+            border-radius: 22px;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.28) 0%, rgba(30, 64, 175, 0.42) 55%, rgba(9, 18, 44, 0.88) 100%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(59, 130, 246, 0.25) 100%);
+            backdrop-filter: blur(8px);
+            box-shadow: 
+                0 0 30px rgba(37, 99, 235, 0.45),
+                inset 0 0 22px rgba(96, 165, 250, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e0f2fe;
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            backface-visibility: visible;
+            overflow: hidden;
+        }
+
+        .cube-face::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px dashed rgba(147, 197, 253, 0.38);
+            border-radius: 15px;
+            background-image: 
+                linear-gradient(to right, rgba(147, 197, 253, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(147, 197, 253, 0.1) 1px, transparent 1px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+
+        .cube-face::after {
+            content: '';
+            position: absolute;
+            width: 58%;
+            height: 58%;
+            border-radius: 50%;
+            border: 1px solid rgba(186, 230, 253, 0.45);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+            pointer-events: none;
+        }
+
+        .cube-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 72px;
+            height: 72px;
+            margin-top: -36px;
+            margin-left: -36px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 0%, #38bdf8 45%, #2563eb 75%, rgba(37,99,235,0) 100%);
+            box-shadow: 0 0 60px 26px rgba(56, 189, 248, 0.85);
+            transform-style: preserve-3d;
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .face-front  { transform: rotateY(  0deg) translateZ(70px); }
+        .face-back   { transform: rotateY(180deg) translateZ(70px); }
+        .face-right  { transform: rotateY( 90deg) translateZ(70px); }
+        .face-left   { transform: rotateY(-90deg) translateZ(70px); }
+        .face-top    { transform: rotateX( 90deg) translateZ(70px); }
+        .face-bottom { transform: rotateX(-90deg) translateZ(70px); }
+
+        @media (min-width: 640px) {
+            .face-front  { transform: rotateY(  0deg) translateZ(85px); }
+            .face-back   { transform: rotateY(180deg) translateZ(85px); }
+            .face-right  { transform: rotateY( 90deg) translateZ(85px); }
+            .face-left   { transform: rotateY(-90deg) translateZ(85px); }
+            .face-top    { transform: rotateX( 90deg) translateZ(85px); }
+            .face-bottom { transform: rotateX(-90deg) translateZ(85px); }
+
+            .cube-scene:hover .face-front  { transform: rotateY(  0deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .face-back   { transform: rotateY(180deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .face-right  { transform: rotateY( 90deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .face-left   { transform: rotateY(-90deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .face-top    { transform: rotateX( 90deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .face-bottom { transform: rotateX(-90deg) translateZ(104px); border-color: #ffffff; }
+            .cube-scene:hover .cube-core   { transform: scale(1.4); box-shadow: 0 0 85px 38px rgba(56, 189, 248, 0.95); }
+        }
+
+        .bg-cube-wrapper {
+            position: absolute;
+            perspective: 700px;
+            cursor: pointer;
+            transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease, filter 0.55s ease;
+        }
+
+        .bg-cube-wrapper:hover {
+            z-index: 30;
+            filter: brightness(1.35) drop-shadow(0 0 25px rgba(56, 189, 248, 0.75));
+        }
+
+        .bg-cube {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: bgCubeFloat var(--float-dur, 12s) infinite ease-in-out var(--float-delay, 0s);
+        }
+
+        @keyframes bgCubeFloat {
+            0%   { transform: translateY(0px) rotateX(var(--rx, -20deg)) rotateY(var(--ry, 25deg)) rotateZ(0deg); }
+            50%  { transform: translateY(-16px) rotateX(calc(var(--rx, -20deg) + 25deg)) rotateY(calc(var(--ry, 25deg) + 180deg)) rotateZ(12deg); }
+            100% { transform: translateY(0px) rotateX(var(--rx, -20deg)) rotateY(calc(var(--ry, 25deg) + 360deg)) rotateZ(0deg); }
+        }
+
+        .bg-cube-face {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(96, 165, 250, 0.5);
+            border-radius: 22%;
+            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.22) 0%, rgba(15, 23, 42, 0.85) 100%);
+            box-shadow: inset 0 0 12px rgba(59, 130, 246, 0.35), 0 0 15px rgba(37, 99, 235, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bg-cube-face::after {
+            content: '';
+            width: 48%;
+            height: 48%;
+            border-radius: 50%;
+            border: 1px solid rgba(147, 197, 253, 0.35);
+            background: radial-gradient(circle, rgba(186, 230, 253, 0.55) 0%, transparent 70%);
+        }
+
+        /* Animasi Saat Kubus Dibuka */
+        .cube.is-opening {
+            transform: rotateX(-15deg) rotateY(45deg) scale(1.18);
+        }
+        .cube.is-opening .face-top    { transform: rotateX( 90deg) translateZ(240px) rotateX(75deg); opacity: 0; }
+        .cube.is-opening .face-bottom { transform: rotateX(-90deg) translateZ(240px) rotateX(-75deg); opacity: 0; }
+        .cube.is-opening .face-front  { transform: rotateY(  0deg) translateZ(240px) rotateX(-45deg) scale(0.8); opacity: 0; }
+        .cube.is-opening .face-back   { transform: rotateY(180deg) translateZ(240px) rotateX(-45deg) scale(0.8); opacity: 0; }
+        .cube.is-opening .face-right  { transform: rotateY( 90deg) translateZ(240px) rotateY(45deg) scale(0.8); opacity: 0; }
+        .cube.is-opening .face-left   { transform: rotateY(-90deg) translateZ(240px) rotateY(-45deg) scale(0.8); opacity: 0; }
+        .cube.is-opening .cube-core   { transform: scale(18); opacity: 0; }
+
+        /* Transisi Sub-Pages */
+        .slides-viewport {
+            perspective: 1400px;
+            position: relative;
+            width: 100%;
+            flex: 1 1 0%;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .slide-section {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate3d(70px, 0, -100px) rotateY(-7deg) scale(0.95);
+            filter: blur(6px);
+            transition: 
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0.5s;
+            z-index: 1;
+        }
+
+        .slide-section.slide-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
+            filter: blur(0px);
+            z-index: 10;
+        }
+
+        .slide-section.slide-prev {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate3d(-70px, 0, -100px) rotateY(7deg) scale(0.95);
+            filter: blur(6px);
+        }
+
+        .slide-section.slide-next {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate3d(70px, 0, -100px) rotateY(-7deg) scale(0.95);
+            filter: blur(6px);
+        }
+
+        .subpage-parallax-box {
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .slide-active .stagger-item {
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .slide-active .stagger-1 { animation-delay: 0.06s; }
+        .slide-active .stagger-2 { animation-delay: 0.14s; }
+        .slide-active .stagger-3 { animation-delay: 0.22s; }
+        .slide-active .stagger-4 { animation-delay: 0.30s; }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .editable-highlight {
+            outline: 2px dashed #60a5fa;
+            outline-offset: 4px;
+            border-radius: 8px;
+            cursor: text;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .editable-highlight:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .slide-section::-webkit-scrollbar,
+        .no-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 0px;
+        }
+        .slide-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide-section::-webkit-scrollbar-thumb {
+            background: rgba(96, 165, 250, 0.3);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between relative selection:bg-brand-500 selection:text-white">
+
+    <!-- ==========================================
+         LATAR BELAKANG GLOBAL: OMBAK LAUT AURA NAVY DINAMIS DI TENGAH HALAMAN
+         ========================================== -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="perspective-grid-top opacity-75"></div>
+        <div class="perspective-grid-bottom opacity-80"></div>
+        <div class="aura-bloom-top absolute top-0 inset-x-0 h-[42vh]"></div>
+        <div class="aura-center-glow absolute inset-x-0 top-[18%] h-[64vh]"></div>
+        <div class="aura-bloom-horizon absolute top-[22%] inset-x-0 h-[62vh]"></div>
+        <div class="aura-wave-ribbon"></div>
+        <div class="aura-wave-ribbon-2"></div>
+
+        <div id="cursor-aura-follower" class="hidden md:block fixed top-0 left-0 w-[440px] h-[440px] rounded-full bg-blue-600/15 blur-[95px] pointer-events-none transition-transform duration-300 ease-out"></div>
+
+        <canvas id="aura-wave-canvas" class="absolute inset-0 w-full h-full opacity-100"></canvas>
+    </div>
+
+    <!-- ==========================================
+         LAYAR PEMBUKA KUBUS (SECTION TERPISAH DENGAN TEMA DOMINAN NAVY)
+         ========================================== -->
+    <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#03091e] py-6 sm:py-10 px-4 sm:px-6 transition-all duration-700 overflow-hidden">
+        
+        <!-- Grid Perspektif, Ombak & Aura Khusus Intro -->
+        <div class="perspective-grid-top opacity-80 pointer-events-none"></div>
+        <div class="perspective-grid-bottom opacity-85 pointer-events-none"></div>
+        <div class="aura-wave-ribbon pointer-events-none"></div>
+        <div class="aura-wave-ribbon-2 pointer-events-none"></div>
+        <div class="aura-bloom-top absolute top-0 inset-x-0 h-[40vh] pointer-events-none"></div>
+        <div class="aura-center-glow absolute inset-x-0 top-[20%] h-[60vh] pointer-events-none"></div>
+        <div class="aura-bloom-horizon absolute top-[22%] inset-x-0 h-[62vh] pointer-events-none"></div>
+
+        <!-- CANVAS ANIMASI SIMBOL JATUH, OMBAK DINAMIS & RIAK AIR -->
+        <canvas id="intro-symbol-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+
+        <!-- LAUTAN KUBUS 3D DI LATAR BELAKANG -->
+        <div id="bg-cubes-field" class="absolute inset-0 overflow-hidden z-10"></div>
+
+        <!-- Judul "Ad Meliora" dengan Font Montserrat -->
+        <div class="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none px-4">
+            
+            <div id="open-portfolio-btn" class="pointer-events-auto group cursor-pointer mb-6 sm:mb-9 select-none">
+                <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    <span class="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-blue-400"></span>
+                    <span class="w-2 h-2 rotate-45 bg-sky-300 shadow-[0_0_10px_#38bdf8]"></span>
+                    <span class="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-blue-400"></span>
+                </div>
+
+                <h1 class="ad-meliora-heading text-3xl sm:text-5xl md:text-6xl uppercase transition-transform duration-500 group-hover:scale-[1.03]">
+                    Ad Meliora
+                </h1>
+
+                <div class="mt-3.5 flex items-center justify-center">
+                    <span class="h-[1px] w-28 sm:w-44 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent group-hover:w-36 sm:group-hover:w-56 transition-all duration-700"></span>
+                </div>
+            </div>
+
+            <!-- Area Kubus 3D Utama (Idle Berputar Terus) -->
+            <div class="relative my-3 sm:my-5 pointer-events-auto flex items-center justify-center">
+                <div class="absolute -inset-6 sm:-inset-8 rounded-full border border-sky-400/25 animate-pulse pointer-events-none"></div>
+                <div class="absolute -inset-11 sm:-inset-14 rounded-full border border-dashed border-blue-500/20 animate-[spin_55s_linear_infinite] pointer-events-none"></div>
+
+                <div id="cube-trigger" class="cube-scene">
+                    <div id="intro-cube" class="cube auto-spin">
+                        <div class="cube-core"></div>
+                        <div class="cube-face face-front">
+                            <i data-lucide="sparkles" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                        <div class="cube-face face-back">
+                            <i data-lucide="layers" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                        <div class="cube-face face-right">
+                            <i data-lucide="code-2" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                        <div class="cube-face face-left">
+                            <i data-lucide="award" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                        <div class="cube-face face-top">
+                            <i data-lucide="compass" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                        <div class="cube-face face-bottom">
+                            <i data-lucide="zap" class="w-9 h-9 sm:w-11 sm:h-11 stroke-[1.75] drop-shadow-[0_0_12px_rgba(56,189,248,0.9)]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         NAVIGASI ATAS (HEADER)
+         ========================================== -->
+    <header class="relative z-30 w-full px-3 sm:px-8 pt-2.5 sm:pt-4 pb-1 shrink-0">
+        <div class="max-w-6xl mx-auto bg-[#06102b]/85 backdrop-blur-xl border border-blue-500/25 rounded-2xl px-4 sm:px-6 py-2.5 shadow-[0_8px_32px_rgba(2,8,28,0.75)] flex items-center justify-between gap-3">
+            
+            <div class="flex items-center gap-3 min-w-0">
+                <button type="button" id="replay-cube-btn" title="Kembali ke Intro Kubus" class="w-10 h-10 rounded-xl bg-gradient-to-b from-blue-500 to-blue-700 border border-blue-300/35 text-white flex items-center justify-center shadow-md shadow-blue-900/50 hover:brightness-110 active:scale-95 transition-all shrink-0 cursor-pointer">
+                    <i data-lucide="box" class="w-4 h-4"></i>
+                </button>
+                <div class="truncate" id="secret-brand-area" onclick="handleSecretHeaderTap()">
+                    <span id="nav-brand-name" class="font-display font-semibold text-white text-sm sm:text-base block leading-snug tracking-[-0.015em] truncate">Khalifatur Rasyid</span>
+                    <span class="text-xs text-blue-300/75 font-normal block leading-tight truncate">Calon Mahasiswa POLTEKPIN 2026</span>
+                </div>
+            </div>
+
+            <!-- Menu Slide Desktop -->
+            <nav class="hidden md:flex items-center gap-1.5 bg-[#040b20]/90 border border-blue-500/20 p-1.5 rounded-xl" id="desktop-nav">
+                <button type="button" data-slide="0" class="nav-tab px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">Profil</button>
+                <button type="button" data-slide="1" class="nav-tab px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">Pencapaian</button>
+                <button type="button" data-slide="2" class="nav-tab px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">Proyek</button>
+                <button type="button" data-slide="3" class="nav-tab px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">Prestasi</button>
+                <button type="button" data-slide="4" class="nav-tab px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">Lulusan</button>
+            </nav>
+
+            <div class="flex items-center gap-2 shrink-0">
+                <div id="user-slide-indicator" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#08173d]/90 border border-blue-400/25 text-xs sm:text-sm font-semibold text-blue-100 tabular-nums shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]"></span>
+                    <span id="current-slide-label">01 / 05</span>
+                </div>
+
+                <!-- Kontrol Kustomisasi (Tersembunyi untuk user, aktif via Ctrl+Shift+E atau 5x tap nama) -->
+                <div id="dev-toolbar" class="hidden items-center gap-1.5">
+                    <button type="button" id="toggle-edit-btn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-colors cursor-pointer">
+                        <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+                        <span>Selesai Edit</span>
+                    </button>
+                    <button type="button" id="reset-data-btn" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900/90 border border-red-400/30 text-red-300 hover:bg-red-950/60 transition-all cursor-pointer" title="Reset Data">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Slide Mobile -->
+        <nav class="flex md:hidden items-center justify-between gap-1 mt-1.5 bg-[#06102b]/90 backdrop-blur-lg p-1.5 rounded-xl border border-blue-500/20 overflow-x-auto no-scrollbar" id="mobile-nav">
+            <button type="button" data-slide="0" class="nav-tab flex-1 py-1.5 px-2.5 rounded-lg text-xs font-medium whitespace-nowrap text-center transition-all cursor-pointer">Profil</button>
+            <button type="button" data-slide="1" class="nav-tab flex-1 py-1.5 px-2.5 rounded-lg text-xs font-medium whitespace-nowrap text-center transition-all cursor-pointer">Pencapaian</button>
+            <button type="button" data-slide="2" class="nav-tab flex-1 py-1.5 px-2.5 rounded-lg text-xs font-medium whitespace-nowrap text-center transition-all cursor-pointer">Proyek</button>
+            <button type="button" data-slide="3" class="nav-tab flex-1 py-1.5 px-2.5 rounded-lg text-xs font-medium whitespace-nowrap text-center transition-all cursor-pointer">Prestasi</button>
+            <button type="button" data-slide="4" class="nav-tab flex-1 py-1.5 px-2.5 rounded-lg text-xs font-medium whitespace-nowrap text-center transition-all cursor-pointer">Lulusan</button>
+        </nav>
+    </header>
+
+    <!-- Banner Info Mode Developer -->
+    <div id="edit-banner" class="hidden relative z-30 max-w-6xl w-full mx-auto px-3 sm:px-8 mt-1 shrink-0">
+        <div class="bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-blue-600/90 backdrop-blur-md border border-sky-300/40 text-white text-xs px-4 py-2 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <i data-lucide="terminal" class="w-4 h-4 shrink-0 text-sky-200"></i>
+                <span><strong>Developer Mode Aktif:</strong> Klik teks untuk mengedit langsung. Tekan <kbd class="px-1.5 py-0.5 bg-slate-950/60 rounded text-[10px]">Ctrl+Shift+E</kbd> untuk menutup.</span>
+            </div>
+            <span class="text-[11px] bg-white/20 px-2.5 py-0.5 rounded-full font-medium">Auto-Save</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         AREA SLIDE UTAMA (5 SUB-PAGE INTERAKTIF TANPA PERLU SCROLL)
+         ========================================== -->
+    <main class="slides-viewport z-10">
+
+        <!-- Tombol Navigasi Samping Cepat (Desktop) -->
+        <button type="button" onclick="prevSlide()" title="Halaman Sebelumnya" class="hidden xl:flex fixed left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full aura-pill-btn items-center justify-center text-white hover:scale-110 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button type="button" onclick="nextSlide()" title="Halaman Selanjutnya" class="hidden xl:flex fixed right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full aura-pill-btn items-center justify-center text-white hover:scale-110 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+
+        <!-- SLIDE 0: PROFIL -->
+        <section class="slide-section slide-active px-3 sm:px-8 py-2" id="slide-0">
+            <div class="subpage-parallax-box max-w-6xl w-full mx-auto">
+                <div class="aura-glass-card interactive-tilt-card rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 items-center">
+                    
+                    <div class="md:col-span-5 flex flex-col items-center stagger-item stagger-1" data-parallax-depth="18">
+                        <div class="relative group">
+                            <div class="absolute -inset-3.5 rounded-3xl bg-gradient-to-tr from-sky-400/45 via-blue-500/35 to-white/25 blur-2xl opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <!-- Bingkai Foto Formal Rasio 3:4 dengan Bezel Navy Glass -->
+                            <div class="w-40 sm:w-52 md:w-60 aspect-[3/4] rounded-2xl sm:rounded-3xl p-1.5 bg-gradient-to-b from-sky-300/35 via-blue-500/20 to-blue-950/90 border border-sky-200/45 shadow-[0_18px_45px_rgba(2,8,28,0.85),0_0_35px_rgba(37,99,235,0.4)] relative overflow-hidden">
+                                <div class="w-full h-full rounded-[14px] sm:rounded-[20px] overflow-hidden bg-[#06102b] relative">
+                                    <img id="profile-avatar" src="image_bbce9c.png" 
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x800/08173d/e0f2fe?text=Khalifatur+Rasyid';"
+                                         alt="Khalifatur Rasyid - Foto Profil Formal" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105">
+                                    <div class="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-t from-[#03091e]/75 via-[#03091e]/20 to-transparent pointer-events-none"></div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="openProfileMediaModal()" class="edit-only-btn hidden absolute top-3 right-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium px-3 py-1.5 rounded-lg shadow-md items-center gap-1.5 backdrop-blur-sm cursor-pointer z-10">
+                                <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                                <span>Ganti Foto</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-7 text-center md:text-left space-y-4 sm:space-y-6" data-parallax-depth="10">
+                        <div class="stagger-item stagger-2 space-y-2 sm:space-y-3">
+                            <span id="profile-greeting" data-editable="profile.greeting" class="eyebrow-label justify-center md:justify-start text-xs sm:text-sm">
+                                PROFIL UTAMA
+                            </span>
+                            <h2 id="profile-name" data-editable="profile.name" class="aura-title hero-name-heading">
+                                Khalifatur Rasyid
+                            </h2>
+                            <p id="profile-headline" data-editable="profile.headline" class="hero-subtitle font-semibold text-sky-200 max-w-2xl mx-auto md:mx-0">
+                                Calon Mahasiswa POLTEKPIN 2026
+                            </p>
+                            <p id="profile-subheadline" data-editable="profile.subheadline" class="text-xs sm:text-sm md:text-base text-slate-300/90 font-normal max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                                Program Studi D-IV Perancang Peraturan Perundang-undangan
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 stagger-item stagger-3" id="profile-tags-container"></div>
+
+                        <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-3 stagger-item stagger-4">
+                            <button type="button" onclick="goToSlide(2)" class="primary-cta-btn inline-flex items-center gap-2.5 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-white font-semibold text-xs sm:text-sm md:text-base cursor-pointer">
+                                <i data-lucide="folder-kanban" class="w-4 h-4 sm:w-5 sm:h-5 text-sky-100"></i>
+                                <span>Lihat Proyek</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 1: PENCAPAIAN -->
+        <section class="slide-section px-3 sm:px-8 py-2" id="slide-1">
+            <div class="subpage-parallax-box max-w-6xl w-full mx-auto space-y-4 sm:space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 stagger-item stagger-1" data-parallax-depth="12">
+                    <div class="space-y-1">
+                        <span class="eyebrow-label text-xs sm:text-sm">
+                            01 / PENCAPAIAN
+                        </span>
+                        <h2 class="aura-title section-heading">
+                            Pencapaian Utama Saya
+                        </h2>
+                    </div>
+                    <button type="button" onclick="openItemModal('achievements')" class="edit-only-btn hidden self-start sm:self-auto items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-medium shadow-md hover:bg-blue-500 cursor-pointer">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Tambah Pencapaian</span>
+                    </button>
+                </div>
+                <div id="achievements-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 stagger-item stagger-2" data-parallax-depth="20"></div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: PROYEK -->
+        <section class="slide-section px-3 sm:px-8 py-2" id="slide-2">
+            <div class="subpage-parallax-box max-w-6xl w-full mx-auto space-y-4 sm:space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 stagger-item stagger-1" data-parallax-depth="12">
+                    <div class="space-y-1">
+                        <span class="eyebrow-label text-xs sm:text-sm">
+                            02 / KARYA & PROYEK
+                        </span>
+                        <h2 class="aura-title section-heading">
+                            Proyek Pilihan
+                        </h2>
+                    </div>
+                    <button type="button" onclick="openItemModal('projects')" class="edit-only-btn hidden self-start sm:self-auto items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-medium shadow-md hover:bg-blue-500 cursor-pointer">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Tambah Proyek</span>
+                    </button>
+                </div>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 stagger-item stagger-2" data-parallax-depth="20"></div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: PRESTASI -->
+        <section class="slide-section px-3 sm:px-8 py-2" id="slide-3">
+            <div class="subpage-parallax-box max-w-6xl w-full mx-auto space-y-3.5 sm:space-y-5 my-auto py-2">
+                <!-- View Utama: Prestasi & Penghargaan -->
+                <div id="awards-main-view" class="space-y-3.5 sm:space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 stagger-item stagger-1" data-parallax-depth="12">
+                        <div class="space-y-1">
+                            <span class="eyebrow-label text-xs sm:text-sm">
+                                03 / AWARDS & HONORS
+                            </span>
+                            <h2 class="aura-title section-heading">
+                                Prestasi & Penghargaan
+                            </h2>
+                        </div>
+                        <button type="button" onclick="openItemModal('awards')" class="edit-only-btn hidden self-start sm:self-auto items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-medium shadow-md hover:bg-blue-500 cursor-pointer">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Tambah Prestasi</span>
+                        </button>
+                    </div>
+
+                    <div id="awards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5 stagger-item stagger-2" data-parallax-depth="20"></div>
+
+                    <!-- Tab Tambahan di Bawah: Penghargaan Organisasi Sekolah -->
+                    <div class="pt-1 flex justify-center stagger-item stagger-3">
+                        <button type="button" onclick="toggleOrgAwardsView(true)" class="aura-pill-btn group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 sm:py-3.5 rounded-2xl text-xs sm:text-sm md:text-base font-semibold text-white hover:border-sky-300/80 transition-all cursor-pointer shadow-lg">
+                            <div class="w-8 h-8 rounded-xl bg-sky-400/20 border border-sky-300/40 flex items-center justify-center text-sky-300 shrink-0">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                            </div>
+                            <span>Penghargaan Organisasi Sekolah</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-sky-300 transition-transform group-hover:translate-x-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- View Tambahan: Penghargaan Organisasi Sekolah -->
+                <div id="awards-org-view" class="hidden space-y-4 sm:space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1 border-b border-blue-500/20">
+                        <div class="space-y-1">
+                            <span class="eyebrow-label text-xs sm:text-sm">
+                                03B / PENGALAMAN ORGANISASI
+                            </span>
+                            <h2 class="aura-title section-heading">
+                                Penghargaan Organisasi Sekolah
+                            </h2>
+                        </div>
+                        <div class="flex items-center gap-2 self-start sm:self-auto">
+                            <button type="button" onclick="openItemModal('organizations')" class="edit-only-btn hidden items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 text-white text-xs font-medium shadow-md hover:bg-blue-500 cursor-pointer">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                <span>Tambah Organisasi</span>
+                            </button>
+                            <button type="button" onclick="toggleOrgAwardsView(false)" class="aura-pill-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-sky-100 hover:text-white cursor-pointer">
+                                <i data-lucide="arrow-left" class="w-4 h-4 text-sky-300"></i>
+                                <span>Kembali ke Prestasi</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="organizations-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: PENDIDIKAN -->
+        <section class="slide-section px-3 sm:px-8 py-2" id="slide-4">
+            <div class="subpage-parallax-box max-w-6xl w-full mx-auto space-y-4 sm:space-y-6 my-auto py-2">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 stagger-item stagger-1" data-parallax-depth="12">
+                    <div class="space-y-1">
+                        <span class="eyebrow-label text-xs sm:text-sm">
+                            04 / PENDIDIKAN
+                        </span>
+                        <h2 class="aura-title section-heading">
+                            Riwayat Lulusan
+                        </h2>
+                    </div>
+                    <button type="button" onclick="openItemModal('education')" class="edit-only-btn hidden self-start sm:self-auto items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs sm:text-sm font-medium shadow-md hover:bg-blue-500 cursor-pointer">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Tambah Lulusan</span>
+                    </button>
+                </div>
+                <div id="education-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 stagger-item stagger-2" data-parallax-depth="20"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         NAVIGASI BAWAH (PREVIOUS & NEXT PAGE)
+         ========================================== -->
+    <footer class="relative z-30 w-full px-3 sm:px-8 pb-2.5 sm:pb-4 pt-1 shrink-0">
+        <div class="max-w-6xl mx-auto bg-[#06102b]/85 backdrop-blur-xl border border-blue-500/25 rounded-2xl px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-[0_8px_32px_rgba(2,8,28,0.75)] flex items-center justify-between gap-2">
+            <button type="button" id="prev-slide-btn" class="aura-pill-btn inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-sky-100 hover:text-white cursor-pointer">
+                <i data-lucide="arrow-left" class="w-4 h-4 text-sky-300"></i>
+                <span>Previous Page</span>
+            </button>
+
+            <div class="flex items-center gap-1.5 sm:gap-2" id="slide-dots-container">
+                <button type="button" data-dot="0" aria-label="Slide 1" class="slide-dot h-2 w-6 sm:w-7 rounded-full bg-sky-400 transition-all cursor-pointer"></button>
+                <button type="button" data-dot="1" aria-label="Slide 2" class="slide-dot h-2 w-2 rounded-full bg-slate-800 border border-slate-600/40 hover:bg-slate-600 transition-all cursor-pointer"></button>
+                <button type="button" data-dot="2" aria-label="Slide 3" class="slide-dot h-2 w-2 rounded-full bg-slate-800 border border-slate-600/40 hover:bg-slate-600 transition-all cursor-pointer"></button>
+                <button type="button" data-dot="3" aria-label="Slide 4" class="slide-dot h-2 w-2 rounded-full bg-slate-800 border border-slate-600/40 hover:bg-slate-600 transition-all cursor-pointer"></button>
+                <button type="button" data-dot="4" aria-label="Slide 5" class="slide-dot h-2 w-2 rounded-full bg-slate-800 border border-slate-600/40 hover:bg-slate-600 transition-all cursor-pointer"></button>
+            </div>
+
+            <button type="button" id="next-slide-btn" class="primary-cta-btn inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-white cursor-pointer">
+                <span>Next Page</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         MODAL KUSTOMISASI DEVELOPER
+         ========================================== -->
+    <div id="custom-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+        <div class="aura-glass-card rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl space-y-4 text-white max-h-[90dvh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-blue-400/25 pb-3">
+                <h3 id="modal-title" class="font-display font-bold text-base sm:text-lg text-white">Edit Konten</h3>
+                <button type="button" onclick="closeModal()" class="p-1.5 rounded-xl text-blue-300 hover:text-white hover:bg-blue-900/50 cursor-pointer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form id="modal-form" onsubmit="saveModalData(event)" class="space-y-3.5">
+                <div id="modal-fields" class="space-y-3"></div>
+                <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-blue-400/20">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 border border-blue-400/30 text-blue-200 hover:text-white cursor-pointer">Batal</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold primary-cta-btn text-white cursor-pointer">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL E-SERTIFIKAT (VIEWER & UPLOAD)
+         ========================================== -->
+    <div id="certificate-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+        <div class="aura-glass-card rounded-3xl max-w-2xl w-full p-5 sm:p-7 shadow-2xl space-y-4 text-white max-h-[90dvh] flex flex-col">
+            <div class="flex items-start justify-between gap-3 border-b border-blue-400/25 pb-3.5 shrink-0">
+                <div class="space-y-1 min-w-0">
+                    <span id="cert-modal-category" class="eyebrow-label text-[11px]">E-SERTIFIKAT RESMI</span>
+                    <h3 id="cert-modal-title" class="font-display font-bold text-base sm:text-lg text-white leading-snug">Judul Sertifikat</h3>
+                </div>
+                <button type="button" onclick="closeCertificateModal()" class="p-1.5 rounded-xl text-blue-300 hover:text-white hover:bg-blue-900/50 cursor-pointer shrink-0">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Area Tampilan Gambar e-Sertifikat -->
+            <div class="relative w-full bg-[#040a1f] border border-blue-400/30 rounded-2xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[320px] max-h-[55vh]">
+                <img id="cert-modal-img" src="" alt="e-Sertifikat" class="max-w-full max-h-[55vh] w-auto h-auto object-contain">
+                <div id="cert-empty-state" class="hidden flex-col items-center justify-center text-center p-6 space-y-2.5">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-sky-400/30 flex items-center justify-center text-sky-300">
+                        <i data-lucide="file-badge" class="w-6 h-6"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-white">e-Sertifikat Belum Diunggah</p>
+                    <p class="text-xs text-slate-300 max-w-xs">Gunakan tombol unggah di bawah atau aktifkan Developer Mode untuk memasukkan file/link e-Sertifikat Anda.</p>
+                </div>
+            </div>
+
+            <!-- Panel Upload Cepat (Tampil saat Developer Mode aktif atau jika sertifikat masih kosong) -->
+            <div id="cert-upload-controls" class="hidden bg-slate-900/80 border border-blue-400/25 rounded-2xl p-3.5 space-y-3 shrink-0">
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                    <input type="text" id="cert-url-input" placeholder="Tempel URL gambar / link Google Drive e-Sertifikat..." class="flex-1 px-3 py-2 rounded-xl bg-slate-950/90 border border-blue-400/30 text-white text-xs focus:outline-none focus:border-sky-400">
+                    <button type="button" onclick="saveCertificateFromModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white cursor-pointer shrink-0">
+                        Simpan URL
+                    </button>
+                </div>
+                <div class="flex items-center justify-between gap-2 pt-1 border-t border-blue-400/15">
+                    <label class="text-[11px] text-sky-200 font-medium">Atau pilih gambar e-Sertifikat dari perangkat:</label>
+                    <input type="file" accept="image/*" onchange="handleDirectCertUpload(event)" class="text-xs text-blue-200 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-sky-500 file:text-slate-950 file:font-semibold hover:file:bg-sky-400 cursor-pointer">
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 pt-1 shrink-0">
+                <button type="button" onclick="toggleCertQuickUpload()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-blue-950/80 border border-blue-400/30 text-sky-200 hover:text-white hover:border-sky-300 cursor-pointer">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span>Unggah / Ganti e-Sertifikat</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <a id="cert-external-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold aura-pill-btn text-white">
+                        <span>Buka Ukuran Penuh</span>
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <button type="button" onclick="closeCertificateModal()" class="px-5 py-2 rounded-xl text-xs font-semibold primary-cta-btn text-white cursor-pointer">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+        const DEFAULT_PORTFOLIO_DATA = {
+            profile: {
+                greeting: "PROFIL UTAMA",
+                name: "Khalifatur Rasyid",
+                headline: "Calon Mahasiswa POLTEKPIN 2026",
+                subheadline: "Program Studi D-IV Perancang Peraturan Perundang-undangan",
+                avatarUrl: "image_bbce9c.png",
+                highlights: [
+                    "AI Development & Refinement",
+                    "Techno & Data Enthusiast",
+                    "Indonesia"
+                ]
+            },
+            achievements: [
+                { title: "Manufaktur AI di bidang Teknologi sebagai Asisten Pekerjaan Manusia" },
+                { title: "Pembuatan Website & Aplikasi Experimental berbasis AI dengan Sistem Local" },
+                { title: "Penggunaan Kemampuan Linguistik untuk Keperluan Jejaring Kerja dan Interaksi Lintas Bidang" },
+                { title: "Sarana Data dengan Menggunakan Forum Open-Source Global" }
+            ],
+            projects: [
+                {
+                    title: "DocuMind AI",
+                    description: "Pembantu Analisis, Pengolahan dan Peningkatan Data berbasis analisis AI OCR dengan fungsi Backend untuk Mengenkripsi Privasi Pengguna",
+                    category: "AI OCR & Data Privacy",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                    linkText: "Lihat Proyek",
+                    linkUrl: "https://bit.ly/DocuMindAi"
+                },
+                {
+                    title: "Cermatify",
+                    description: "Website untuk membantu peserta tes untuk melakukan tes kecermatan berbasis simbol hilang dengan laporan peningkatannya",
+                    category: "EdTech & Analytics",
+                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                    linkText: "Lihat Proyek",
+                    linkUrl: "https://cermatify.vercel.app"
+                }
+            ],
+            awards: [
+                {
+                    title: "Finalist Sustained Development Goals Debate Competition Universitas Indonesia 2025",
+                    issuer: "Universitas Indonesia",
+                    year: "2025",
+                    certImage: ""
+                },
+                {
+                    title: "2nd Winner National Schools Debating Championship se-Kabupaten Nganjuk 2025",
+                    issuer: "NSDC Kabupaten Nganjuk",
+                    year: "2025",
+                    certImage: ""
+                },
+                {
+                    title: "2nd Winner East Java's Speech Competition Universitas PGRI Delta Sidoarjo.",
+                    issuer: "Universitas PGRI Delta Sidoarjo",
+                    year: "2024",
+                    certImage: ""
+                },
+                {
+                    title: "10th Best Speaker National School Debating Championship 2024",
+                    issuer: "National School Debating Championship",
+                    year: "2024",
+                    certImage: ""
+                }
+            ],
+            organizations: [
+                {
+                    title: "OSIS",
+                    role: "Pengurus & Aktifis Organisasi Siswa Intra Sekolah",
+                    certImage: ""
+                },
+                {
+                    title: "ICT (Information, Communication and Technology) SMAKER",
+                    role: "Anggota Divisi Teknologi & Informasi",
+                    certImage: ""
+                },
+                {
+                    title: "SANSEMUKERTO (Ekstra Musik)",
+                    role: "Anggota Ekstrakurikuler Musik",
+                    certImage: ""
+                },
+                {
+                    title: "EC (English Continent) SMAKER",
+                    role: "Anggota Komunitas Bahasa Inggris & Debat",
+                    certImage: ""
+                }
+            ],
+            education: [
+                {
+                    degree: "SD Negeri 2 Kedungrejo",
+                    institution: "Kabupaten Nganjuk, Provinsi Jawa Timur",
+                    year: "Sekolah Dasar",
+                    badge: "Lulus"
+                },
+                {
+                    degree: "SMP Negeri 1 Kertosono",
+                    institution: "Kabupaten Nganjuk, Provinsi Jawa Timur",
+                    year: "Sekolah Menengah Pertama",
+                    badge: "Lulus"
+                },
+                {
+                    degree: "SMA Negeri 1 Kertosono",
+                    institution: "Kurikulum Merdeka Rumpun IPA, Kabupaten Nganjuk, Provinsi Jawa Timur",
+                    year: "Sekolah Menengah Atas",
+                    badge: "Rumpun IPA"
+                }
+            ]
+        };
+
+        let portfolioData = loadPortfolioData();
+        let currentSlide = 0;
+        const totalSlides = 5;
+        let isEditMode = false;
+        let activeModalContext = null;
+        let activeCertContext = null;
+        let isCubeOpening = false;
+        let brandTapCount = 0;
+        let brandTapTimer = null;
+
+        function loadPortfolioData() {
+            try {
+                const saved = localStorage.getItem('modern_blue_portfolio_v3');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (!parsed.organizations) {
+                        parsed.organizations = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA.organizations));
+                    }
+                    // Pastikan foto formal terbaru (image_bbce9c.png) langsung tampil jika sebelumnya masih memakai foto placeholder Unsplash
+                    if (!parsed.profile?.avatarUrl || parsed.profile.avatarUrl.includes('images.unsplash.com')) {
+                        parsed.profile.avatarUrl = "image_bbce9c.png";
+                    }
+                    return parsed;
+                }
+            } catch (e) {}
+            return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+        }
+
+        function savePortfolioData() {
+            try {
+                localStorage.setItem('modern_blue_portfolio_v3', JSON.stringify(portfolioData));
+            } catch (e) {}
+        }
+
+        /* ------------------------------------------------------------------
+           OMBAK LAUT AURA NAVY DINAMIS (KECEPATAN SEDANG & NYAMAN DI MATA)
+           ------------------------------------------------------------------ */
+        let waveMouseX = 0.5;
+        let waveMouseY = 0.5;
+
+        function initAuraWaveCanvas() {
+            const canvas = document.getElementById('aura-wave-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            let time = 0;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            // 4 lapisan gelombang navy-blue di area tengah halaman dengan tempo sedang
+            const oceanWaves = [
+                {
+                    amplitude: 34,
+                    secondaryAmp: 14,
+                    wavelength: 0.0020,
+                    speed: 0.65,
+                    verticalBobSpeed: 0.45,
+                    yOffset: 0.45,
+                    fillTop: 'rgba(29, 78, 216, 0.24)',
+                    fillMid: 'rgba(10, 26, 68, 0.35)',
+                    fillBottom: 'rgba(3, 9, 30, 0.08)',
+                    crestColor: 'rgba(96, 165, 250, 0.48)'
+                },
+                {
+                    amplitude: 28,
+                    secondaryAmp: 12,
+                    wavelength: 0.0025,
+                    speed: -0.55,
+                    verticalBobSpeed: 0.55,
+                    yOffset: 0.52,
+                    fillTop: 'rgba(37, 99, 235, 0.26)',
+                    fillMid: 'rgba(12, 30, 78, 0.42)',
+                    fillBottom: 'rgba(3, 9, 30, 0.14)',
+                    crestColor: 'rgba(125, 211, 252, 0.55)'
+                },
+                {
+                    amplitude: 24,
+                    secondaryAmp: 10,
+                    wavelength: 0.0030,
+                    speed: 0.75,
+                    verticalBobSpeed: 0.65,
+                    yOffset: 0.59,
+                    fillTop: 'rgba(56, 189, 248, 0.20)',
+                    fillMid: 'rgba(15, 36, 90, 0.48)',
+                    fillBottom: 'rgba(3, 9, 30, 0.25)',
+                    crestColor: 'rgba(186, 230, 253, 0.60)'
+                },
+                {
+                    amplitude: 20,
+                    secondaryAmp: 9,
+                    wavelength: 0.0035,
+                    speed: -0.68,
+                    verticalBobSpeed: 0.50,
+                    yOffset: 0.66,
+                    fillTop: 'rgba(30, 64, 175, 0.30)',
+                    fillMid: 'rgba(8, 19, 52, 0.65)',
+                    fillBottom: 'rgba(3, 9, 30, 0.45)',
+                    crestColor: 'rgba(96, 165, 250, 0.45)'
+                }
+            ];
+
+            function drawOceanWaves() {
+                ctx.clearRect(0, 0, width, height);
+                // Kecepatan sedang: gelombang tetap mengalir hidup namun tenang dan tidak mendistraksi
+                time += 0.010;
+
+                oceanWaves.forEach((wave, index) => {
+                    const verticalBob = Math.sin(time * wave.verticalBobSpeed + index * 1.4) * 7;
+                    const baseLineY = height * wave.yOffset + verticalBob + (waveMouseY - 0.5) * 14;
+                    const step = width < 640 ? 12 : 6;
+                    const points = [];
+
+                    for (let x = 0; x <= width + step; x += step) {
+                        const mouseSwell = Math.sin((x / width) * Math.PI) * (waveMouseX - 0.5) * 12;
+                        const primaryWave = Math.sin(x * wave.wavelength + time * wave.speed + index * 1.2) * wave.amplitude;
+                        const harmonicWave = Math.cos(x * (wave.wavelength * 1.65) - time * (wave.speed * 0.8) + index * 2.1) * wave.secondaryAmp;
+                        const rippleDetail = Math.sin(x * 0.005 + time * (wave.speed * 1.2)) * 3.5;
+                        const y = baseLineY + primaryWave + harmonicWave + rippleDetail + mouseSwell;
+                        points.push({ x, y });
+                    }
+
+                    // Area isi ombak (Fill)
+                    ctx.beginPath();
+                    ctx.moveTo(0, height);
+                    for (let i = 0; i < points.length; i++) {
+                        ctx.lineTo(points[i].x, points[i].y);
+                    }
+                    ctx.lineTo(width, height);
+                    ctx.closePath();
+
+                    const grad = ctx.createLinearGradient(0, baseLineY - wave.amplitude * 1.6, 0, height);
+                    grad.addColorStop(0, wave.fillTop);
+                    grad.addColorStop(0.45, wave.fillMid);
+                    grad.addColorStop(1, wave.fillBottom);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+
+                    // Garis Puncak Ombak (Glowing Crest)
+                    ctx.beginPath();
+                    for (let i = 0; i < points.length; i++) {
+                        if (i === 0) ctx.moveTo(points[i].x, points[i].y);
+                        else ctx.lineTo(points[i].x, points[i].y);
+                    }
+                    ctx.save();
+                    ctx.shadowColor = 'rgba(56, 189, 248, 0.75)';
+                    ctx.shadowBlur = 10;
+                    ctx.strokeStyle = wave.crestColor;
+                    ctx.lineWidth = 1.6;
+                    ctx.stroke();
+                    ctx.restore();
+                });
+
+                requestAnimationFrame(drawOceanWaves);
+            }
+
+            drawOceanWaves();
+        }
+
+        /* ------------------------------------------------------------------
+           ANIMASI SIMBOL KUBUS JATUH, OMBAK DINAMIS & RIAK AIR DI INTRO
+           ------------------------------------------------------------------ */
+        function initIntroSymbolCanvas() {
+            const canvas = document.getElementById('intro-symbol-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            let time = 0;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const symbolTypes = ['sparkles', 'layers', 'code', 'award', 'compass', 'zap'];
+            const count = window.innerWidth < 640 ? 7 : 12;
+            const symbols = [];
+            const ripples = [];
+
+            function createSymbol(randomY = false) {
+                const targetY = height * (0.48 + Math.random() * 0.26);
+                return {
+                    x: Math.random() * width,
+                    y: randomY ? Math.random() * targetY : -30 - Math.random() * (height * 0.4),
+                    targetY: targetY,
+                    speedY: 0.45 + Math.random() * 0.55,
+                    size: 14 + Math.random() * 8,
+                    symbol: symbolTypes[Math.floor(Math.random() * symbolTypes.length)],
+                    opacity: 0.68 + Math.random() * 0.25,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.015
+                };
+            }
+
+            for (let i = 0; i < count; i++) {
+                symbols.push(createSymbol(true));
+            }
+
+            function drawSymbolIcon(type, x, y, size, alpha) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
+                ctx.fillStyle = `rgba(37, 99, 235, ${alpha * 0.38})`;
+                ctx.lineWidth = 1.8;
+                ctx.beginPath();
+
+                if (type === 'sparkles') {
+                    ctx.arc(0, 0, size * 0.4, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                } else if (type === 'layers') {
+                    ctx.rect(-size*0.5, -size*0.3, size, size*0.6);
+                    ctx.fill();
+                    ctx.stroke();
+                } else if (type === 'code') {
+                    ctx.moveTo(-size*0.4, -size*0.3); ctx.lineTo(-size*0.7, 0); ctx.lineTo(-size*0.4, size*0.3);
+                    ctx.moveTo(size*0.4, -size*0.3); ctx.lineTo(size*0.7, 0); ctx.lineTo(size*0.4, size*0.3);
+                    ctx.stroke();
+                } else if (type === 'award') {
+                    ctx.arc(0, -size*0.2, size*0.4, 0, Math.PI * 2);
+                    ctx.fill(); ctx.stroke();
+                } else if (type === 'compass') {
+                    ctx.arc(0, 0, size*0.5, 0, Math.PI * 2);
+                    ctx.fill(); ctx.stroke();
+                } else {
+                    ctx.moveTo(0, -size*0.6); ctx.lineTo(-size*0.3, 0); ctx.lineTo(size*0.2, 0); ctx.lineTo(-0.1, size*0.6);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            function drawIntroSymbols() {
+                const overlay = document.getElementById('intro-overlay');
+                if (!overlay || overlay.style.display === 'none') {
+                    requestAnimationFrame(drawIntroSymbols);
+                    return;
+                }
+
+                ctx.clearRect(0, 0, width, height);
+                time += 0.012;
+
+                // 3 lapisan gelombang dinamis bertema Navy di layar intro (tempo sedang)
+                const introWaveLayers = [
+                    { yRatio: 0.46, amp: 28, secAmp: 11, freq: 0.0022, speed: 0.7, topCol: 'rgba(29, 78, 216, 0.26)', crest: 'rgba(96, 165, 250, 0.50)' },
+                    { yRatio: 0.54, amp: 24, secAmp: 10, freq: 0.0028, speed: -0.6, topCol: 'rgba(37, 99, 235, 0.28)', crest: 'rgba(125, 211, 252, 0.55)' },
+                    { yRatio: 0.62, amp: 19, secAmp: 8, freq: 0.0034, speed: 0.8, topCol: 'rgba(15, 36, 90, 0.45)', crest: 'rgba(186, 230, 253, 0.50)' }
+                ];
+
+                introWaveLayers.forEach((wl, idx) => {
+                    const verticalBob = Math.sin(time * 0.8 + idx * 1.5) * 9;
+                    const baseY = height * wl.yRatio + verticalBob;
+                    const pts = [];
+
+                    for (let x = 0; x <= width + 10; x += 10) {
+                        const y = baseY
+                            + Math.sin(x * wl.freq + time * wl.speed + idx) * wl.amp
+                            + Math.cos(x * (wl.freq * 1.6) - time * (wl.speed * 0.75)) * wl.secAmp;
+                        pts.push({ x, y });
+                    }
+
+                    ctx.beginPath();
+                    ctx.moveTo(0, height);
+                    for (let i = 0; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+                    ctx.lineTo(width, height);
+                    ctx.closePath();
+
+                    const grad = ctx.createLinearGradient(0, baseY - 35, 0, height);
+                    grad.addColorStop(0, wl.topCol);
+                    grad.addColorStop(0.5, 'rgba(8, 20, 52, 0.65)');
+                    grad.addColorStop(1, 'rgba(3, 9, 30, 0.95)');
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    for (let i = 0; i < pts.length; i++) {
+                        if (i === 0) ctx.moveTo(pts[i].x, pts[i].y);
+                        else ctx.lineTo(pts[i].x, pts[i].y);
+                    }
+                    ctx.save();
+                    ctx.shadowColor = 'rgba(56, 189, 248, 0.65)';
+                    ctx.shadowBlur = 8;
+                    ctx.strokeStyle = wl.crest;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                    ctx.restore();
+                });
+
+                for (let i = 0; i < symbols.length; i++) {
+                    const s = symbols[i];
+                    s.y += s.speedY;
+                    s.rotation += s.rotSpeed;
+
+                    drawSymbolIcon(s.symbol, s.x, s.y, s.size, s.opacity);
+
+                    if (s.y >= s.targetY) {
+                        ripples.push({
+                            x: s.x,
+                            y: s.targetY,
+                            rx: 3,
+                            ry: 1,
+                            maxRx: 28 + Math.random() * 20,
+                            alpha: 0.75,
+                            speed: 0.42
+                        });
+                        symbols[i] = createSymbol(false);
+                    }
+                }
+
+                for (let j = ripples.length - 1; j >= 0; j--) {
+                    const r = ripples[j];
+                    r.rx += r.speed;
+                    r.ry = r.rx * 0.3;
+                    const progress = r.rx / r.maxRx;
+                    const currentAlpha = r.alpha * (1 - progress);
+
+                    if (currentAlpha <= 0.02 || r.rx >= r.maxRx) {
+                        ripples.splice(j, 1);
+                        continue;
+                    }
+
+                    ctx.beginPath();
+                    ctx.ellipse(r.x, r.y, r.rx, r.ry, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(96, 165, 250, ${currentAlpha})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                }
+
+                requestAnimationFrame(drawIntroSymbols);
+            }
+
+            drawIntroSymbols();
+        }
+
+        function renderBackgroundCubesField() {
+            const container = document.getElementById('bg-cubes-field');
+            if (!container) return;
+
+            const isMobile = window.innerWidth < 640;
+            const cubesConfig = [
+                { top: '11%', left: '6%', size: isMobile ? 42 : 64, opacity: 0.85, blur: 0, dur: '14s', delay: '0s', rx: '-18deg', ry: '32deg' },
+                { top: '24%', left: '16%', size: isMobile ? 30 : 44, opacity: 0.70, blur: 1, dur: '17s', delay: '-2s', rx: '22deg', ry: '-40deg', hideOnMobile: true },
+                { top: '66%', left: '6%', size: isMobile ? 46 : 72, opacity: 0.90, blur: 0, dur: '15s', delay: '-4s', rx: '-25deg', ry: '15deg' },
+                { top: '79%', left: '18%', size: isMobile ? 34 : 52, opacity: 0.75, blur: 0.5, dur: '18s', delay: '-1s', rx: '14deg', ry: '60deg' },
+                { top: '13%', left: '82%', size: isMobile ? 44 : 68, opacity: 0.90, blur: 0, dur: '16s', delay: '-3s', rx: '-20deg', ry: '-35deg' },
+                { top: '67%', left: '82%', size: isMobile ? 44 : 62, opacity: 0.85, blur: 0, dur: '15s', delay: '-2.5s', rx: '-15deg', ry: '-50deg' },
+                { top: '80%', left: '72%', size: isMobile ? 34 : 48, opacity: 0.75, blur: 0.5, dur: '17s', delay: '-7s', rx: '25deg', ry: '20deg' }
+            ];
+
+            container.innerHTML = cubesConfig
+                .filter(c => !(isMobile && c.hideOnMobile))
+                .map(c => {
+                    const half = c.size / 2;
+                    return `
+                        <div class="bg-cube-wrapper" onclick="triggerCubeOpen()" style="top: ${c.top}; left: ${c.left}; width: ${c.size}px; height: ${c.size}px; opacity: ${c.opacity}; filter: blur(${c.blur}px);">
+                            <div class="bg-cube" style="--float-dur: ${c.dur}; --float-delay: ${c.delay}; --rx: ${c.rx}; --ry: ${c.ry};">
+                                <div class="bg-cube-face" style="transform: rotateY(0deg) translateZ(${half}px);"></div>
+                                <div class="bg-cube-face" style="transform: rotateY(180deg) translateZ(${half}px);"></div>
+                                <div class="bg-cube-face" style="transform: rotateY(90deg) translateZ(${half}px);"></div>
+                                <div class="bg-cube-face" style="transform: rotateY(-90deg) translateZ(${half}px);"></div>
+                                <div class="bg-cube-face" style="transform: rotateX(90deg) translateZ(${half}px);"></div>
+                                <div class="bg-cube-face" style="transform: rotateX(-90deg) translateZ(${half}px);"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+        }
+
+        /* ------------------------------------------------------------------
+           RENDER KONTEN UTAMA
+           ------------------------------------------------------------------ */
+        function renderAll() {
+            document.getElementById('nav-brand-name').textContent = portfolioData.profile.name;
+            document.getElementById('profile-greeting').textContent = portfolioData.profile.greeting;
+            document.getElementById('profile-name').textContent = portfolioData.profile.name;
+            document.getElementById('profile-headline').textContent = portfolioData.profile.headline;
+            const subheadlineEl = document.getElementById('profile-subheadline');
+            if (subheadlineEl) {
+                subheadlineEl.textContent = portfolioData.profile.subheadline || '';
+            }
+            document.getElementById('profile-avatar').src = portfolioData.profile.avatarUrl;
+
+            const tagsContainer = document.getElementById('profile-tags-container');
+            tagsContainer.innerHTML = portfolioData.profile.highlights.map((tag, idx) => `
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-900/60 border border-sky-300/40 text-white text-xs sm:text-sm font-medium shadow-md">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-sky-300 shrink-0"></i>
+                    <span data-editable-array="profile.highlights.${idx}">${escapeHtml(tag)}</span>
+                </span>
+            `).join('');
+
+            const achievementsGrid = document.getElementById('achievements-grid');
+            achievementsGrid.innerHTML = portfolioData.achievements.map((item, idx) => `
+                <div class="aura-subcard interactive-tilt-card group relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between gap-4 min-h-[135px] sm:min-h-[165px]">
+                    ${renderCardEditControls('achievements', idx)}
+                    <div class="flex items-center justify-between gap-3">
+                        <span class="meta-tag text-xs font-semibold">Pencapaian 0${idx + 1}</span>
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-sky-400/15 border border-sky-300/35 flex items-center justify-center text-sky-300 shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.25)]">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-base sm:text-lg md:text-xl font-semibold text-white leading-relaxed" data-editable-list="achievements.${idx}.title">${escapeHtml(item.title)}</h3>
+                </div>
+            `).join('');
+
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = portfolioData.projects.map((item, idx) => `
+                <div class="aura-subcard interactive-tilt-card group relative rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between">
+                    ${renderCardEditControls('projects', idx, true)}
+                    <div>
+                        <div class="h-36 sm:h-48 md:h-52 w-full bg-blue-950 overflow-hidden relative border-b border-sky-300/25">
+                            <img src="${escapeHtml(item.image)}" 
+                                 onerror="this.src='https://placehold.co/800x450/0f172a/38bdf8?text=Preview+Proyek'" 
+                                 alt="${escapeHtml(item.title)}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#06102b] via-blue-950/30 to-transparent"></div>
+                            <span class="meta-tag absolute top-3.5 left-3.5 backdrop-blur-md text-xs sm:text-sm px-3 py-1" data-editable-list="projects.${idx}.category">
+                                ${escapeHtml(item.category || 'Featured Project')}
+                            </span>
+                        </div>
+                        <div class="p-5 sm:p-6 md:p-7 pb-2 space-y-2">
+                            <h3 class="card-title text-lg sm:text-xl md:text-2xl font-bold text-white" data-editable-list="projects.${idx}.title">
+                                ${escapeHtml(item.title)}
+                            </h3>
+                            <p class="text-xs sm:text-sm md:text-base text-slate-200/90 leading-relaxed" data-editable-list="projects.${idx}.description">
+                                ${escapeHtml(item.description || '')}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 md:px-7 pb-5 sm:pb-6 md:pb-7 pt-3">
+                        <a href="${escapeHtml(item.linkUrl || '#')}" target="_blank" rel="noopener noreferrer" class="aura-pill-btn inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-sky-100 hover:text-white transition-all group/link">
+                            <span data-editable-list="projects.${idx}.linkText">${escapeHtml(item.linkText || 'Lihat Proyek')}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            const awardsGrid = document.getElementById('awards-grid');
+            awardsGrid.innerHTML = portfolioData.awards.map((item, idx) => `
+                <div class="aura-subcard interactive-tilt-card group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col justify-between gap-3.5">
+                    ${renderCardEditControls('awards', idx, true)}
+                    <div class="flex items-start gap-3.5">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-sky-400/20 border border-sky-300/45 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.35)]">
+                            <i data-lucide="trophy" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="card-title text-sm sm:text-base md:text-lg leading-snug" data-editable-list="awards.${idx}.title">
+                                ${escapeHtml(item.title)}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="pt-2.5 border-t border-blue-400/20 flex items-center justify-between gap-2">
+                        <button type="button" onclick="openCertificateModal('awards', ${idx})" class="aura-pill-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-sky-100 hover:text-white cursor-pointer">
+                            <i data-lucide="file-check-2" class="w-3.5 h-3.5 text-sky-300"></i>
+                            <span>Lihat e-Sertifikat</span>
+                        </button>
+                        ${item.certImage ? `<span class="text-[11px] text-emerald-300 font-medium inline-flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i>Tersedia</span>` : `<span class="text-[11px] text-blue-300/70">Klik untuk melihat</span>`}
+                    </div>
+                </div>
+            `).join('');
+
+            const organizationsGrid = document.getElementById('organizations-grid');
+            if (organizationsGrid) {
+                organizationsGrid.innerHTML = (portfolioData.organizations || []).map((item, idx) => `
+                    <div class="aura-subcard interactive-tilt-card group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col justify-between gap-3.5">
+                        ${renderCardEditControls('organizations', idx, true)}
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-sky-400/20 border border-sky-300/45 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.35)]">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-sky-200"></i>
+                            </div>
+                            <div class="flex-1 min-w-0 space-y-1">
+                                <h3 class="card-title text-sm sm:text-base md:text-lg leading-snug" data-editable-list="organizations.${idx}.title">
+                                    ${escapeHtml(item.title)}
+                                </h3>
+                                <p class="text-xs text-sky-200/80" data-editable-list="organizations.${idx}.role">
+                                    ${escapeHtml(item.role || 'Pengalaman Organisasi Sekolah')}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pt-2.5 border-t border-blue-400/20 flex items-center justify-between gap-2">
+                            <button type="button" onclick="openCertificateModal('organizations', ${idx})" class="aura-pill-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-sky-100 hover:text-white cursor-pointer">
+                                <i data-lucide="file-check-2" class="w-3.5 h-3.5 text-sky-300"></i>
+                                <span>Lihat e-Sertifikat</span>
+                            </button>
+                            ${item.certImage ? `<span class="text-[11px] text-emerald-300 font-medium inline-flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i>Tersedia</span>` : `<span class="text-[11px] text-blue-300/70">Klik untuk melihat</span>`}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const educationGrid = document.getElementById('education-grid');
+            educationGrid.innerHTML = portfolioData.education.map((item, idx) => `
+                <div class="aura-subcard interactive-tilt-card group relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 flex flex-col justify-between gap-4">
+                    ${renderCardEditControls('education', idx)}
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-sky-400/20 border border-sky-300/45 text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.35)]">
+                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        </div>
+                        <span class="meta-tag text-xs" data-editable-list="education.${idx}.year">
+                            ${escapeHtml(item.year || `Jenjang 0${idx + 1}`)}
+                        </span>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-display text-base sm:text-lg md:text-xl font-bold text-white tracking-[-0.02em] leading-snug" data-editable-list="education.${idx}.degree">
+                            ${escapeHtml(item.degree)}
+                        </h3>
+                        <p class="text-xs sm:text-sm font-medium text-sky-100/90 leading-relaxed" data-editable-list="education.${idx}.institution">
+                            ${escapeHtml(item.institution)}
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-sky-300/25 flex items-center justify-between">
+                        <span class="inline-flex items-center gap-2 text-xs font-semibold text-sky-200">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-300"></i>
+                            <span data-editable-list="education.${idx}.badge">${escapeHtml(item.badge || 'Jawa Timur')}</span>
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+
+            if (window.lucide) lucide.createIcons();
+            applyEditModeBindings();
+            bindCardTiltInteractions();
+            updateSlideNavigationUI();
+        }
+
+        function renderCardEditControls(section, index, hasMediaLink = false) {
+            const hiddenClass = isEditMode ? 'flex' : 'hidden';
+            return `
+                <div class="edit-only-btn ${hiddenClass} absolute top-3 right-3 z-20 items-center gap-1 bg-slate-900/95 backdrop-blur-md p-1 rounded-xl shadow-lg border border-blue-400/30">
+                    ${hasMediaLink ? `
+                        <button type="button" onclick="openItemModal('${section}', ${index})" title="Ubah Gambar / Link" class="p-1.5 rounded-lg text-sky-400 hover:bg-blue-950 cursor-pointer">
+                            <i data-lucide="link-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    ` : ''}
+                    <button type="button" onclick="deleteItem('${section}', ${index})" title="Hapus" class="p-1.5 rounded-lg text-red-400 hover:bg-red-950/60 cursor-pointer">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        /* ------------------------------------------------------------------
+           INTERAKSI KUBUS
+           ------------------------------------------------------------------ */
+        const introOverlay = document.getElementById('intro-overlay');
+        const introCube = document.getElementById('intro-cube');
+        const cubeTrigger = document.getElementById('cube-trigger');
+        const openBtn = document.getElementById('open-portfolio-btn');
+        const replayCubeBtn = document.getElementById('replay-cube-btn');
+
+        function rotateIntroCubeFromPoint(clientX, clientY) {
+            if (isCubeOpening) return;
+            const rect = introOverlay.getBoundingClientRect();
+            const x = (clientX - rect.width / 2) / (rect.width / 2);
+            const y = (clientY - rect.height / 2) / (rect.height / 2);
+
+            introCube.classList.remove('auto-spin');
+            introCube.style.transform = `rotateX(${-24 - (y * 28)}deg) rotateY(${-38 + (x * 45)}deg)`;
+
+            const bgField = document.getElementById('bg-cubes-field');
+            if (bgField) bgField.style.transform = `translate3d(${-x * 20}px, ${-y * 20}px, 0)`;
+        }
+
+        introOverlay.addEventListener('mousemove', (e) => rotateIntroCubeFromPoint(e.clientX, e.clientY));
+        introOverlay.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) rotateIntroCubeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+
+        function triggerCubeOpen() {
+            if (isCubeOpening) return;
+            isCubeOpening = true;
+            introCube.classList.remove('auto-spin');
+            introCube.classList.add('is-opening');
+
+            document.querySelectorAll('.bg-cube-wrapper').forEach(el => {
+                el.style.transform = 'scale(0.3) translateZ(-300px)';
+                el.style.opacity = '0';
+                el.style.pointerEvents = 'none';
+            });
+
+            setTimeout(() => {
+                introOverlay.classList.add('opacity-0', 'pointer-events-none');
+                introOverlay.style.display = 'none';
+                goToSlide(currentSlide);
+            }, 550);
+        }
+
+        function replayCubeIntro() {
+            isCubeOpening = false;
+            introOverlay.style.display = 'flex';
+            void introOverlay.offsetWidth;
+            introOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            introCube.classList.remove('is-opening');
+            introCube.style.transform = 'rotateX(-24deg) rotateY(-38deg)';
+            introCube.classList.add('auto-spin');
+            renderBackgroundCubesField();
+        }
+
+        cubeTrigger.addEventListener('click', triggerCubeOpen);
+        openBtn.addEventListener('click', triggerCubeOpen);
+        replayCubeBtn.addEventListener('click', replayCubeIntro);
+
+        function handleSecretHeaderTap() {
+            brandTapCount++;
+            if (brandTapTimer) clearTimeout(brandTapTimer);
+            brandTapTimer = setTimeout(() => { brandTapCount = 0; }, 800);
+            if (brandTapCount >= 5) {
+                brandTapCount = 0;
+                toggleDeveloperMode();
+            }
+        }
+
+        /* ------------------------------------------------------------------
+           MOUSE PARALLAX & TILT
+           ------------------------------------------------------------------ */
+        function initInteractiveSubpages() {
+            const follower = document.getElementById('cursor-aura-follower');
+
+            window.addEventListener('mousemove', (e) => {
+                waveMouseX = e.clientX / window.innerWidth;
+                waveMouseY = e.clientY / window.innerHeight;
+
+                if (follower) follower.style.transform = `translate3d(${e.clientX - 208}px, ${e.clientY - 208}px, 0)`;
+
+                const activeSlideEl = document.getElementById(`slide-${currentSlide}`);
+                if (!activeSlideEl) return;
+
+                const normX = (e.clientX / window.innerWidth - 0.5) * 2;
+                const normY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+                const parallaxBox = activeSlideEl.querySelector('.subpage-parallax-box');
+                if (parallaxBox && window.innerWidth >= 768) {
+                    parallaxBox.style.transform = `perspective(1200px) rotateY(${normX * 2.2}deg) rotateX(${-normY * 2.2}deg) translate3d(${-normX * 8}px, ${-normY * 8}px, 0)`;
+                }
+            });
+        }
+
+        function bindCardTiltInteractions() {
+            document.querySelectorAll('.interactive-tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                });
+            });
+        }
+
+        /* ------------------------------------------------------------------
+           NAVIGASI SLIDE
+           ------------------------------------------------------------------ */
+        function goToSlide(targetIndex) {
+            const parsedIndex = parseInt(targetIndex, 10);
+            if (isNaN(parsedIndex) || parsedIndex < 0 || parsedIndex >= totalSlides) return;
+
+            if (introOverlay && introOverlay.style.display !== 'none') {
+                introOverlay.classList.add('opacity-0', 'pointer-events-none');
+                introOverlay.style.display = 'none';
+                isCubeOpening = true;
+            }
+
+            currentSlide = parsedIndex;
+
+            for (let i = 0; i < totalSlides; i++) {
+                const el = document.getElementById(`slide-${i}`);
+                if (!el) continue;
+                el.classList.remove('slide-active', 'slide-prev', 'slide-next');
+                if (i === currentSlide) {
+                    el.classList.add('slide-active');
+                    el.scrollTop = 0;
+                } else if (i < currentSlide) {
+                    el.classList.add('slide-prev');
+                } else {
+                    el.classList.add('slide-next');
+                }
+            }
+            updateSlideNavigationUI();
+        }
+
+        function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+        function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+
+        function bindNavigationButtons() {
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    goToSlide(parseInt(btn.getAttribute('data-slide'), 10));
+                });
+            });
+
+            document.querySelectorAll('.slide-dot').forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    goToSlide(parseInt(dot.getAttribute('data-dot'), 10));
+                });
+            });
+
+            const prevBtn = document.getElementById('prev-slide-btn');
+            const nextBtn = document.getElementById('next-slide-btn');
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        }
+
+        function updateSlideNavigationUI() {
+            const slideLabel = document.getElementById('current-slide-label');
+            if (slideLabel) slideLabel.textContent = `0${currentSlide + 1} / 0${totalSlides}`;
+
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                const idx = parseInt(btn.getAttribute('data-slide'), 10);
+                if (idx === currentSlide) {
+                    btn.className = 'nav-tab px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer bg-blue-600/90 text-white shadow-sm whitespace-nowrap text-center flex-1 md:flex-initial';
+                } else {
+                    btn.className = 'nav-tab px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 whitespace-nowrap text-center flex-1 md:flex-initial';
+                }
+            });
+
+            document.querySelectorAll('.slide-dot').forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.className = 'slide-dot h-2 w-6 sm:w-7 rounded-full bg-sky-400 transition-all cursor-pointer';
+                } else {
+                    dot.className = 'slide-dot h-2 w-2 rounded-full bg-slate-800 border border-slate-600/40 hover:bg-slate-600 transition-all cursor-pointer';
+                }
+            });
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') || (e.altKey && e.key.toLowerCase() === 'e')) {
+                e.preventDefault();
+                toggleDeveloperMode();
+                return;
+            }
+            if (isEditMode || (introOverlay && introOverlay.style.display !== 'none')) return;
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            if (isEditMode || (introOverlay && introOverlay.style.display !== 'none')) return;
+            const diffX = touchStartX - e.changedTouches[0].screenX;
+            const diffY = touchStartY - e.changedTouches[0].screenY;
+            if (Math.abs(diffX) > 65 && Math.abs(diffX) > Math.abs(diffY) * 1.6) {
+                if (diffX > 0) nextSlide(); else prevSlide();
+            }
+        }, { passive: true });
+
+        /* ------------------------------------------------------------------
+           DEVELOPER MODE & MODAL
+           ------------------------------------------------------------------ */
+        function initDeveloperSecretAccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('dev') === 'true' || urlParams.get('edit') === 'true') toggleDeveloperMode(true);
+
+            document.getElementById('toggle-edit-btn')?.addEventListener('click', () => toggleDeveloperMode(false));
+            document.getElementById('reset-data-btn')?.addEventListener('click', resetToDefault);
+        }
+
+        function toggleDeveloperMode(forceState = null) {
+            isEditMode = forceState !== null ? forceState : !isEditMode;
+            const devToolbar = document.getElementById('dev-toolbar');
+            const userSlideIndicator = document.getElementById('user-slide-indicator');
+            const banner = document.getElementById('edit-banner');
+
+            if (isEditMode) {
+                devToolbar.classList.remove('hidden'); devToolbar.classList.add('flex');
+                userSlideIndicator?.classList.add('hidden');
+                banner.classList.remove('hidden');
+            } else {
+                devToolbar.classList.add('hidden'); devToolbar.classList.remove('flex');
+                userSlideIndicator?.classList.remove('hidden');
+                banner.classList.add('hidden');
+            }
+            renderAll();
+        }
+
+        function applyEditModeBindings() {
+            document.querySelectorAll('.edit-only-btn').forEach(el => {
+                if (isEditMode) { el.classList.remove('hidden'); el.classList.add('inline-flex'); }
+                else { el.classList.add('hidden'); el.classList.remove('inline-flex'); }
+            });
+
+            document.querySelectorAll('[data-editable], [data-editable-array], [data-editable-list]').forEach(el => {
+                if (isEditMode) {
+                    el.setAttribute('contenteditable', 'true');
+                    el.classList.add('editable-highlight');
+                    el.onblur = () => {
+                        const newVal = el.textContent.trim();
+                        if (el.hasAttribute('data-editable')) {
+                            const [obj, prop] = el.getAttribute('data-editable').split('.');
+                            portfolioData[obj][prop] = newVal;
+                        } else if (el.hasAttribute('data-editable-array')) {
+                            const [obj, arr, idx] = el.getAttribute('data-editable-array').split('.');
+                            portfolioData[obj][arr][parseInt(idx, 10)] = newVal;
+                        } else if (el.hasAttribute('data-editable-list')) {
+                            const [list, idx, prop] = el.getAttribute('data-editable-list').split('.');
+                            portfolioData[list][parseInt(idx, 10)][prop] = newVal;
+                        }
+                        savePortfolioData();
+                        document.getElementById('nav-brand-name').textContent = portfolioData.profile.name;
+                    };
+                } else {
+                    el.removeAttribute('contenteditable');
+                    el.classList.remove('editable-highlight');
+                    el.onblur = null;
+                }
+            });
+        }
+
+        function deleteItem(section, index) {
+            portfolioData[section].splice(index, 1);
+            savePortfolioData();
+            renderAll();
+        }
+
+        function resetToDefault() {
+            portfolioData = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+            savePortfolioData();
+            renderAll();
+        }
+
+        const customModal = document.getElementById('custom-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalFields = document.getElementById('modal-fields');
+        const inputStyle = "w-full px-3.5 py-2 rounded-xl bg-slate-900/90 border border-blue-400/30 text-white text-sm focus:outline-none focus:border-sky-400";
+
+        function openProfileMediaModal() {
+            activeModalContext = { type: 'profile' };
+            modalTitle.textContent = 'Ubah Foto Profil Formal (3:4)';
+            modalFields.innerHTML = `
+                <div><label class="block text-xs font-bold text-blue-200 mb-1">URL Foto Profil (Rasio 3:4)</label><input type="text" name="avatarUrl" value="${escapeHtml(portfolioData.profile.avatarUrl)}" class="${inputStyle}"></div>
+                <div><label class="block text-xs font-bold text-blue-200 mb-1">Upload Foto dari Perangkat</label><input type="file" accept="image/*" onchange="handleLocalImageUpload(event, 'avatarUrl')" class="w-full text-xs text-blue-200 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:bg-blue-600 file:text-white"></div>
+            `;
+            customModal.classList.remove('hidden'); customModal.classList.add('flex');
+        }
+
+        function openItemModal(section, index = null) {
+            const isEdit = index !== null;
+            activeModalContext = { type: section, index };
+            const existing = isEdit ? portfolioData[section][index] : {};
+
+            if (section === 'achievements') {
+                modalTitle.textContent = isEdit ? 'Ubah Pencapaian' : 'Tambah Pencapaian';
+                modalFields.innerHTML = `
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Isi Pencapaian</label><input type="text" name="title" required value="${escapeHtml(existing.title || '')}" class="${inputStyle}"></div>
+                `;
+            } else if (section === 'projects') {
+                modalTitle.textContent = isEdit ? 'Ubah Proyek' : 'Tambah Proyek';
+                modalFields.innerHTML = `
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Judul Proyek</label><input type="text" name="title" required value="${escapeHtml(existing.title || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Deskripsi Proyek</label><input type="text" name="description" required value="${escapeHtml(existing.description || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Kategori</label><input type="text" name="category" required value="${escapeHtml(existing.category || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">URL Gambar</label><input type="text" name="image" value="${escapeHtml(existing.image || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Upload Gambar</label><input type="file" accept="image/*" onchange="handleLocalImageUpload(event, 'image')" class="w-full text-xs text-blue-200 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:bg-blue-600 file:text-white"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Teks Link</label><input type="text" name="linkText" value="${escapeHtml(existing.linkText || 'Lihat Proyek')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">URL Link</label><input type="text" name="linkUrl" value="${escapeHtml(existing.linkUrl || '')}" class="${inputStyle}"></div>
+                `;
+            } else if (section === 'awards') {
+                modalTitle.textContent = isEdit ? 'Ubah Prestasi & e-Sertifikat' : 'Tambah Prestasi';
+                modalFields.innerHTML = `
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Judul Prestasi</label><input type="text" name="title" required value="${escapeHtml(existing.title || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">URL Gambar e-Sertifikat</label><input type="text" name="certImage" value="${escapeHtml(existing.certImage || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Upload e-Sertifikat dari Perangkat</label><input type="file" accept="image/*" onchange="handleLocalImageUpload(event, 'certImage')" class="w-full text-xs text-blue-200 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:bg-blue-600 file:text-white"></div>
+                `;
+            } else if (section === 'organizations') {
+                modalTitle.textContent = isEdit ? 'Ubah Organisasi & e-Sertifikat' : 'Tambah Organisasi Sekolah';
+                modalFields.innerHTML = `
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Nama Organisasi</label><input type="text" name="title" required value="${escapeHtml(existing.title || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Peran / Keterangan</label><input type="text" name="role" value="${escapeHtml(existing.role || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">URL Gambar e-Sertifikat</label><input type="text" name="certImage" value="${escapeHtml(existing.certImage || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Upload e-Sertifikat dari Perangkat</label><input type="file" accept="image/*" onchange="handleLocalImageUpload(event, 'certImage')" class="w-full text-xs text-blue-200 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:bg-blue-600 file:text-white"></div>
+                `;
+            } else if (section === 'education') {
+                modalTitle.textContent = isEdit ? 'Ubah Riwayat Lulusan' : 'Tambah Riwayat Lulusan';
+                modalFields.innerHTML = `
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Nama Sekolah / Institusi</label><input type="text" name="degree" required value="${escapeHtml(existing.degree || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Lokasi & Kurikulum</label><input type="text" name="institution" required value="${escapeHtml(existing.institution || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Jenjang</label><input type="text" name="year" required value="${escapeHtml(existing.year || '')}" class="${inputStyle}"></div>
+                    <div><label class="block text-xs font-bold text-blue-200 mb-1">Keterangan Tambahan</label><input type="text" name="badge" required value="${escapeHtml(existing.badge || '')}" class="${inputStyle}"></div>
+                `;
+            }
+            customModal.classList.remove('hidden'); customModal.classList.add('flex');
+        }
+
+        /* ------------------------------------------------------------------
+           FITUR TAB ORGANISASI & MODAL E-SERTIFIKAT
+           ------------------------------------------------------------------ */
+        function toggleOrgAwardsView(showOrg) {
+            const mainView = document.getElementById('awards-main-view');
+            const orgView = document.getElementById('awards-org-view');
+            if (!mainView || !orgView) return;
+
+            if (showOrg) {
+                mainView.classList.add('hidden');
+                orgView.classList.remove('hidden');
+            } else {
+                orgView.classList.add('hidden');
+                mainView.classList.remove('hidden');
+            }
+        }
+
+        function openCertificateModal(section, index) {
+            const item = portfolioData[section]?.[index];
+            if (!item) return;
+
+            activeCertContext = { section, index };
+            const certModal = document.getElementById('certificate-modal');
+            const titleEl = document.getElementById('cert-modal-title');
+            const catEl = document.getElementById('cert-modal-category');
+            const imgEl = document.getElementById('cert-modal-img');
+            const emptyEl = document.getElementById('cert-empty-state');
+            const uploadControls = document.getElementById('cert-upload-controls');
+            const urlInput = document.getElementById('cert-url-input');
+            const extLink = document.getElementById('cert-external-link');
+
+            catEl.textContent = section === 'organizations' ? 'E-SERTIFIKAT ORGANISASI SEKOLAH' : 'E-SERTIFIKAT PRESTASI';
+            titleEl.textContent = item.title;
+            urlInput.value = item.certImage || '';
+
+            if (item.certImage) {
+                imgEl.src = item.certImage;
+                imgEl.classList.remove('hidden');
+                emptyEl.classList.add('hidden');
+                emptyEl.classList.remove('flex');
+                extLink.href = item.certImage;
+                extLink.classList.remove('hidden');
+                extLink.classList.add('inline-flex');
+                uploadControls.classList.add('hidden');
+            } else {
+                imgEl.src = '';
+                imgEl.classList.add('hidden');
+                emptyEl.classList.remove('hidden');
+                emptyEl.classList.add('flex');
+                extLink.classList.add('hidden');
+                extLink.classList.remove('inline-flex');
+                if (isEditMode) {
+                    uploadControls.classList.remove('hidden');
+                } else {
+                    uploadControls.classList.add('hidden');
+                }
+            }
+
+            certModal.classList.remove('hidden');
+            certModal.classList.add('flex');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function toggleCertQuickUpload() {
+            const uploadControls = document.getElementById('cert-upload-controls');
+            if (uploadControls) {
+                uploadControls.classList.toggle('hidden');
+            }
+        }
+
+        function saveCertificateFromModal() {
+            if (!activeCertContext) return;
+            const urlInput = document.getElementById('cert-url-input');
+            const newUrl = urlInput ? urlInput.value.trim() : '';
+            portfolioData[activeCertContext.section][activeCertContext.index].certImage = newUrl;
+            savePortfolioData();
+            renderAll();
+            openCertificateModal(activeCertContext.section, activeCertContext.index);
+        }
+
+        function handleDirectCertUpload(event) {
+            const file = event.target.files[0];
+            if (!file || !activeCertContext) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                portfolioData[activeCertContext.section][activeCertContext.index].certImage = e.target.result;
+                savePortfolioData();
+                renderAll();
+                openCertificateModal(activeCertContext.section, activeCertContext.index);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function closeCertificateModal() {
+            const certModal = document.getElementById('certificate-modal');
+            if (certModal) {
+                certModal.classList.add('hidden');
+                certModal.classList.remove('flex');
+            }
+            activeCertContext = null;
+        }
+
+        function handleLocalImageUpload(event, targetInputName) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const input = document.querySelector(`#modal-form input[name="${targetInputName}"]`);
+                if (input) input.value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function closeModal() {
+            customModal.classList.add('hidden'); customModal.classList.remove('flex');
+            activeModalContext = null;
+        }
+
+        function saveModalData(event) {
+            event.preventDefault();
+            if (!activeModalContext) return;
+            const formData = new FormData(event.target);
+            const entries = Object.fromEntries(formData.entries());
+
+            if (activeModalContext.type === 'profile') {
+                portfolioData.profile.avatarUrl = entries.avatarUrl || portfolioData.profile.avatarUrl;
+            } else {
+                const section = activeModalContext.type;
+                if (activeModalContext.index !== null) {
+                    portfolioData[section][activeModalContext.index] = { ...portfolioData[section][activeModalContext.index], ...entries };
+                } else {
+                    portfolioData[section].push(entries);
+                }
+            }
+
+            savePortfolioData();
+            closeModal();
+            renderAll();
+        }
+
+        window.onload = function() {
+            initAuraWaveCanvas();
+            initIntroSymbolCanvas();
+            renderBackgroundCubesField();
+            bindNavigationButtons();
+            initInteractiveSubpages();
+            initDeveloperSecretAccess();
+            renderAll();
+        };
+    </script>
+</body>
+</html>
